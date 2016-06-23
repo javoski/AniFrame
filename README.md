@@ -10,6 +10,7 @@ let frame = new AniFrame({
     url: '..images/sprite.jpg',
     totalFrame: 20
 })
+frame.play()
 ```
 
 #### 选项
