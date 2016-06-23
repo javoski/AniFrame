@@ -1,5 +1,5 @@
 (function(root){
-    function getStyle(el, name) {
+    function getStyle(el) {
     　 　if(window.getComputedStyle) {
     　 　    return window.getComputedStyle(el, null)
     　 　}else{
