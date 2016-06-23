@@ -1,13 +1,13 @@
 #### 用法
 ###### html
 ```html
-<script type="text/javascript" src="path/aniframe.js"></script>
+<script type="text/javascript" src="..path/aniframe.js"></script>
 ```
 ###### javscript
 ```javascript
 let frame = new AniFrame({
     target: document.getElementById('ani-frame'),
-    url: 'images/sprite.jpg',
+    url: '..images/sprite.jpg',
     totalFrame: 20
 })
 ```
@@ -21,10 +21,30 @@ let frame = new AniFrame({
 * speed: 播放速度,即每帧停留时间，单位为ms毫秒，默认100
 * direction: 雪碧图的排列方向，默认为'x'(横排), 'y'则表示竖排
 * loop: 是否循环播放，默认为true
+
 ###### 回调
 * onPlaying(current, total): 每帧播放回调，current为当前帧数(第一帧为0)，total为总帧数
 * onPlayEnd(): 播放结束的回调，若loop为true，则每个循环回调一次
 
+###### 示例
+```javascript
+let frame = new AniFrame({
+    target: document.getElementById('ani-frame'),
+    url: '..images/sprite_vertical.jpg',
+    totalFrame: 10,
+    width: 320,
+    height: 504,
+    speed: 50,
+    direction: 'y',
+    loop: false,
+    onPlaying: function(current, total){
+        console.log((current/total)*100+'percent')
+    },
+    onPlayEnd: function(){
+        console.log('end')
+    }
+})
+```
 
 #### 方法
 * play(): 开始播放
