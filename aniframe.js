@@ -7,9 +7,10 @@
     　 　}
 　   }
     function AniFrame(options){
+        var style = getStyle(options.target)
         this.options = {
-            width: parseInt(getStyle(options.target).width),
-            height: parseInt(getStyle(options.target).height),
+            width: parseInt(style.width),
+            height: parseInt(style.height),
             speed: 100,
             direction: 'x',
             loop: true,
