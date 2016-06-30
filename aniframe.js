@@ -25,7 +25,7 @@
             onPlaying: function(){},
             onPlayEnd: function(){}
         }
-        this.options = extend(this.options, options)
+        extend(this.options, options)
         this.init()
         return this
     }
