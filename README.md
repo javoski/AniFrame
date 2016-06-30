@@ -5,7 +5,7 @@
 ```
 ###### javscript
 ```javascript
-let frame = new AniFrame({
+var frame = new AniFrame({
     target: document.getElementById('ani-frame'),
     url: '..images/sprite.jpg',
     totalFrame: 20
@@ -29,7 +29,7 @@ frame.play()
 
 ###### 示例
 ```javascript
-let frame = new AniFrame({
+var frame = new AniFrame({
     target: document.getElementById('ani-frame'),
     url: '..images/sprite_vertical.jpg',
     totalFrame: 10,
@@ -39,10 +39,8 @@ let frame = new AniFrame({
     direction: 'y',
     loop: false,
     onPlaying: function(current, total){
-        console.log((current/total)*100+'percent')
     },
     onPlayEnd: function(){
-        console.log('end')
     }
 })
 ```

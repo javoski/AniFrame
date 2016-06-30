@@ -5,7 +5,15 @@
     　 　}else{
     　 　 　 return el.currentStyle
     　 　}
-　   }
+    }
+    function extend(dest, src){
+        for(var k in src){
+            if(src.hasOwnProperty(k)){
+                dest[k] = src[k]
+            }
+        }
+        return dest
+    }
     function AniFrame(options){
         var style = getStyle(options.target)
         this.options = {
@@ -17,7 +25,7 @@
             onPlaying: function(){},
             onPlayEnd: function(){}
         }
-        $.extend(this.options, options)
+        this.options = extend(this.options, options)
         this.init()
         return this
     }
