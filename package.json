@@ -1,0 +1,27 @@
+{
+  "name": "ani-frame",
+  "version": "1.0.0",
+  "description": "A simple frame animation tool",
+  "main": "aniframe.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xujiongbo/AniFrame.git"
+  },
+  "keywords": [
+    "frame animation"
+  ],
+  "author": "xujiongbo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xujiongbo/AniFrame/issues"
+  },
+  "homepage": "https://github.com/xujiongbo/AniFrame#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4"
+  }
+}
