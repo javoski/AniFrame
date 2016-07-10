@@ -1,6 +1,11 @@
-(function(root){
-    function getStyle(el) {
-    　 　if(window.getComputedStyle) {
+(function (global, factory){
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global.AniFrame = factory())
+}(this, function(){
+    'use strict'
+    function getStyle(el){
+    　 　if(window.getComputedStyle){
     　 　    return window.getComputedStyle(el, null)
     　 　}else{
     　 　 　 return el.currentStyle
@@ -83,5 +88,5 @@
             this.pause()
         }
     }
-    root.AniFrame = AniFrame
-})(window)
+    return AniFrame
+})
