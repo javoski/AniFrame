@@ -3,7 +3,6 @@
   typeof define === 'function' && define.amd ? define(factory) :
   (global.AniFrame = factory())
 }(this, function(){
-    'use strict'
     function getStyle(el){
     　 　if(window.getComputedStyle){
     　 　    return window.getComputedStyle(el, null)
@@ -89,4 +88,4 @@
         }
     }
     return AniFrame
-})
+}))
