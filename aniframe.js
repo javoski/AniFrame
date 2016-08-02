@@ -1,16 +1,16 @@
-(function (global, factory){
+(function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global.AniFrame = factory())
-}(this, function(){
-    function getStyle(el){
-    　 　if(window.getComputedStyle){
+}(this, function() {
+    function getStyle(el) {
+    　 　if(window.getComputedStyle) {
     　 　    return window.getComputedStyle(el, null)
     　 　}else{
     　 　 　 return el.currentStyle
     　 　}
     }
-    function extend(dest, src){
+    function extend(dest, src) {
         for(var k in src){
             if(src.hasOwnProperty(k)){
                 dest[k] = src[k]
@@ -18,72 +18,75 @@
         }
         return dest
     }
-    function AniFrame(options){
-        var style = getStyle(options.target)
-        this.options = {
-            width: parseInt(style.width),
-            height: parseInt(style.height),
-            speed: 100,
-            direction: 'x',
-            loop: true,
-            onPlaying: function(){},
-            onPlayEnd: function(){}
+    function AniFrame(options) {
+        if(this instanceof AniFrame) {
+            var style = getStyle(options.target)
+            this.options = {
+                width: parseInt(style.width),
+                height: parseInt(style.height),
+                speed: 100,
+                direction: 'x',
+                loop: true,
+                onPlaying: function(){},
+                onPlayEnd: function(){}
+            }
+            extend(this.options, options)
+            this.init()
+        }else {
+            return new AniFrame(options)
         }
-        extend(this.options, options)
-        this.init()
-        return this
     }
-    AniFrame.prototype.init = function(){
+    AniFrame.prototype.init = function() {
         var o = this.options
         this.index = 0
         this.timer = null
         this.status = 'stopped'
-        if(o.direction === 'y'){
+        if(o.direction === 'y') {
             o.target.style.backgroundSize = o.width + 'px ' + (o.totalFrame * o.height) + 'px'
-        }else{
+        }else {
             o.target.style.backgroundSize = (o.totalFrame * o.width) + 'px ' + o.height + 'px'
         }
         o.target.style.backgroundImage = 'url(' + o.url + ')'
     }
-    AniFrame.prototype._play = function(){
+    AniFrame.prototype._play = function() {
         var o = this.options
         this.index++
-        if(this.index >= this.options.totalFrame){
+        if(this.index >= this.options.totalFrame) {
             o.onPlayEnd()
-            if(this.options.loop){
+            if(this.options.loop) {
                 this.index = 0
-            }else{
+            }else {
                 this.stop()
                 return
             }
         }
-        if(o.direction === 'y'){
+        if(o.direction === 'y') {
             o.target.style.backgroundPosition = "0px -" + (o.height * this.index) + "px";
-        }else{
+        }else {
             o.target.style.backgroundPosition = "-" + (o.width * this.index) + "px 0px";
         }
         o.onPlaying(this.index, o.totalFrame)
     }
-    AniFrame.prototype.play = function(){
+    AniFrame.prototype.play = function() {
         this.timer = setInterval(this._play.bind(this), this.options.speed)
         this.status = 'playing'
     }
-    AniFrame.prototype.pause = function(){
+    AniFrame.prototype.pause = function() {
         clearInterval(this.timer)
         this.timer = null
         this.status = 'paused'
     }
-    AniFrame.prototype.stop = function(){
+    AniFrame.prototype.stop = function() {
         this.pause()
         this.index = 0
         this.status = 'stopped'
     }
-    AniFrame.prototype.toggle = function(status){
-        if(this.status !== 'playing'){
+    AniFrame.prototype.toggle = function(status) {
+        if(this.status !== 'playing') {
             this.play()
-        }else if(status === 'stop'){
+        }else if(status === 'stop') {
             this.stop()
-        }else{
+        }else {
             this.pause()
         }
     }
